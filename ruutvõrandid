@@ -1,0 +1,168 @@
+from tkinter import *
+from tkinter import messagebox as mb
+import matplotlib.pyplot as plt
+import numpy as np
+import math
+
+def lahenda():
+    try:
+        a = float(a_entry.get())
+        b = float(b_entry.get())
+        c = float(c_entry.get())
+    except ValueError:
+        mb.showwarning("Внимание!", "Пожалуйста, введите значения!")
+        return
+    diskriminant = b ** 2 - 4 * a * c
+    if diskriminant > 0:
+        x1 = round((-1 * b + math.sqrt(diskriminant)) / (2 * a), 2)
+        x2 = round((-1 * b - math.sqrt(diskriminant)) / (2 * a), 2)
+        tulemuse_tekst = f'D = {diskriminant}\nx₁ = {x1}\nx₂ = {x2}'
+    elif diskriminant == 0:
+        x = round((-1 * b) / (2 * a), 2)
+        tulemuse_tekst = f'D = {diskriminant}\nx = {x}'
+    else:
+        tulemuse_tekst = "Корней нет"
+    tulemus_display.delete(1.0, END)
+    tulemus_display.insert(END, tulemuse_tekst)
+
+def graafik():
+    try:
+        a = float(a_entry.get())
+        b = float(b_entry.get())
+        c = float(c_entry.get())
+    except ValueError:
+        mb.showwarning("Ынимание!", "Пожалуйста, введите значения!")
+        return
+    diskriminant = b ** 2 - 4 * a * c
+    if diskriminant < 0:
+        mb.showwarning("Внимание!", "График построить невозможно!")
+        return
+    x0 = (-b) / (2 * a)
+    y0 = a * x0 ** 2 + b * x0 + c
+    x_vals = np.arange(x0 - 10, x0 + 10, 0.5)
+    y_vals = a * x_vals ** 2 + b * x_vals + c
+    plt.figure()
+    plt.plot(x_vals, y_vals, 'c-.o')
+    plt.title("Ruutvõrrandid")
+    plt.ylabel("y")
+    plt.xlabel("x")
+    plt.grid(True)
+    plt.show()
+
+def vaal():
+    x1 = np.arange(0, 9.5, 0.5)
+    y1 = (2 / 27) * x1 * x1 - 3
+    x2 = np.arange(-10, 0.5, 0.5)
+    y2 = 0.04 * x2 * x2 - 3
+    x3 = np.arange(-9, -2.5, 0.5)
+    y3 = (2 / 9) * (x3 + 6) ** 2 + 1
+    x4 = np.arange(-3, 9.5, 0.5)
+    y4 = (-1 / 12) * (x4 - 3) ** 2 + 6
+    x5 = np.arange(5, 9, 0.5)
+    y5 = (1 / 9) * (x5 - 5) ** 2 + 2
+    x6 = np.arange(5, 8.5, 0.5)
+    y6 = (1 / 8) * (x6 - 7) ** 2 + 1.5
+    x7 = np.arange(-13, -8.5, 0.5)
+    y7 = (-0.75) * (x7 + 11) ** 2 + 6
+    x8 = np.arange(-15, -12.5, 0.5)
+    y8 = (-0.5) * (x8 + 13) ** 2 + 3
+    x9 = np.arange(-15, -10, 0.5)
+    y9 = [1] * len(x9)
+    x10 = np.arange(3, 4, 0.5)
+    y10 = [3] * len(x10)
+    plt.figure()
+    plt.plot(x1, y1, 'b:*', x2, y2, 'b:*', x3, y3, 'b:*', x4, y4, 'b:*', x5, y5, 'b:*', x6, y6, 'b:*', x7, y7, 'b:*',
+             x8, y8, 'b:*', x9, y9, 'b:*', x10, y10, 'k-')
+    plt.title("Кит")
+    plt.xlabel("x")
+    plt.ylabel("y")
+    plt.grid(True)
+    plt.show()
+
+def vihmavari():
+    x1 = np.arange(-12, 12, 0.5)
+    y1 = -(1 / 18) * x1 ** 2 + 12
+    x2 = np.arange(-4, 4, 0.5)
+    y2 = -(1 / 8) * x2 ** 2 + 6
+    x3 = np.arange(-12, -4, 0.5)
+    y3 = -(1 / 8) * (x3 + 8) ** 2 + 6
+    x4 = np.arange(4, 12, 0.5)
+    y4 = -(1 / 8) * (x4 - 8) ** 2 + 6
+    x5 = np.arange(-4, -0.3, 0.5)
+    y5 = 2 * (x5 + 3) ** 2 - 9
+    x6 = np.arange(-4, 0.2, 0.5)
+    y6 = 1.5 * (x6 + 3) ** 2 - 10
+    plt.figure()
+    plt.plot(x1, y1, 'r-.d', x2, y2, 'r-.d', x3, y3, 'r-.d', x4, y4, 'r-.d', x5, y5, 'm-s', x6, y6, 'm-s')
+    plt.title("Зонтик")
+    plt.xlabel("x")
+    plt.ylabel("y")
+    plt.grid(True)
+    plt.show()
+
+def prillid():
+    x1 = np.arange(-9, -0.5, 0.5)
+    y1 = -(1 / 16) * (x1 + 5) ** 2 + 2
+    x2 = np.arange(1, 9.5, 0.5)
+    y2 = -(1 / 16) * (x2 - 5) ** 2 + 2
+    x3 = np.arange(-9, -0.5, 0.5)
+    y3 = (1 / 4) * (x3 + 5) ** 2 - 3
+    x4 = np.arange(1, 9.5, 0.5)
+    y4 = (1 / 4) * (x4 - 5) ** 2 - 3
+    x5 = np.arange(-9, -6, 0.5)
+    y5 = -(x5 + 7) ** 2 + 5
+    x6 = np.arange(6, 9.5, 0.5)
+    y6 = -(x6 - 7) ** 2 + 5
+    x7 = np.arange(-1, 1, 0.01)
+    y7 = -0.5 * (x7 ** 2) + 1.5
+    plt.figure()
+    plt.plot(x1, y1, 'k-+', x2, y2, 'k-+', x3, y3, 'k-+', x4, y4, 'k-+', x5, y5, 'k-+', x6, y6, 'k-+', x7, y7, 'k-+')
+    plt.title("Очки")
+    plt.xlabel("x")
+    plt.ylabel("y")
+    plt.grid(True)
+    plt.show()
+
+aken = Tk()
+aken.geometry("1500x600")
+aken.title("Ruutvõrrandid")
+
+pealkiri_tekst = "Ruutvõrrandid lahendamine\n"
+pealkiri_label = Label(aken, text=pealkiri_tekst, bg="#00ff00", fg="#080808", font="Algerian 35", height=3, width=len(pealkiri_tekst), cursor="watch")
+a_entry = Entry(aken, bg="#00ffff", fg="#080808", font="Algerian 30", width=15, justify=CENTER)
+b_entry = Entry(aken, bg="#00ffff", fg="#080808", font="Algerian 30", width=15, justify=CENTER)
+c_entry = Entry(aken, bg="#00ffff", fg="#080808", font="Algerian 30", width=15, justify=CENTER)
+
+vaal_rb = Radiobutton(aken, text="Кит", font=("Algerian", 40), value=1, command=vaal)
+vihmavari_rb = Radiobutton(aken, text="Зонтик", font=("Algerian ", 40), value=2, command=vihmavari)
+prillid_rb = Radiobutton(aken, text="Очки", font=("Algerian ", 40), value=3, command=prillid)
+
+text_1 = Label(aken, text="x² +", font=("Times New Roman", 30))
+text_2 = Label(aken, text="x +", font=("Times New Roman", 30))
+text_3 = Label(aken, text="= 0", font=("Times New Roman", 30))
+
+lahenda_nupp = Button(aken, text="Решить", font=("Algerian", 30), command=lahenda)
+graafik_nupp = Button(aken, text="Нарисовать график", font=("Algerian", 30), command=graafik)
+tulemus_display = Text(aken, height=5, width=15, font=("Wide Latin", 15))
+
+pealkiri_label.grid(row=0, column=0, columnspan=7)
+tulemus_display.grid(row=4, column=2, columnspan=4)
+lahenda_nupp.grid(row=3, rowspan=1, column=1, columnspan=2)
+graafik_nupp.grid(row=3, rowspan=1, column=3, columnspan=2)
+a_entry.grid(row=1, column=1)
+text_1.grid(row=1, column=2)
+b_entry.grid(row=1, column=3)
+text_2.grid(row=1, column=4)
+c_entry.grid(row=1, column=5)
+text_3.grid(row=1, column=6)
+vaal_rb.grid(row=5, column=1, columnspan=2)
+vihmavari_rb.grid(row=5, column=3, columnspan=2)
+prillid_rb.grid(row=5, column=5, columnspan=2)
+
+for i in range(7):
+    aken.grid_columnconfigure(i, weight=1)
+
+for i in range(6):
+    aken.grid_rowconfigure(i, weight=1)
+
+aken.mainloop()
